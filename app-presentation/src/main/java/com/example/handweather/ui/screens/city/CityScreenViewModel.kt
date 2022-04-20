@@ -42,8 +42,6 @@ class CityScreenViewModel(
                     setState { state ->
                         state.copy(fetchingError = null)
                     }
-                } else {
-                    Log.v("fetchCityWeather", "Called successfully")
                 }
             }
         }
