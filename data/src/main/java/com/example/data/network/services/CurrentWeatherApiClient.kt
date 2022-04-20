@@ -9,7 +9,7 @@ import com.example.data.util.Constants.Companion.UNIT_OF_MEASUREMENT
 import com.example.data.util.Constants.Companion.WEATHER_PATH
 import io.ktor.client.request.*
 
-class WeatherApiClient(
+class CurrentWeatherApiClient(
     private val client: AppClient
 ) {
 

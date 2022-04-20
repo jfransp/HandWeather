@@ -107,4 +107,7 @@ dependencies {
 
     //Accompanist Navigation Animation for Compose
     implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_version"
+
+    //Accompanist system colors for Compose
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
 }

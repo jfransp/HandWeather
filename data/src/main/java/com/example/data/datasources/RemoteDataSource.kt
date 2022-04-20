@@ -4,22 +4,22 @@ import com.example.data.network.entities.currentweathernetworkresponse.CurrentWe
 import com.example.data.network.entities.currentweathernetworkresponse.subclasses.CoordinatesNetwork
 import com.example.data.network.entities.forecastnetworkresponse.ForecastNetworkResponse
 import com.example.data.network.services.ForecastApiClient
-import com.example.data.network.services.WeatherApiClient
+import com.example.data.network.services.CurrentWeatherApiClient
 
 class RemoteDataSource(
-    private val weatherApiClient: WeatherApiClient,
+    private val currentWeatherApiClient: CurrentWeatherApiClient,
     private val forecastApiClient: ForecastApiClient
 ) {
 
     suspend fun fetchLocationWeatherByCoordinates(coordinates: CoordinatesNetwork): CurrentWeatherNetworkResponse {
-        return weatherApiClient.getCurrentWeatherByCoordinates(coordinates = coordinates)
+        return currentWeatherApiClient.getCurrentWeatherByCoordinates(coordinates = coordinates)
     }
 
     suspend fun fetchCityWeatherByCityName(
         cityName: String,
         countryId: String?
     ): CurrentWeatherNetworkResponse {
-        return weatherApiClient.getCurrentWeatherByCityName(city = cityName, countryId = countryId)
+        return currentWeatherApiClient.getCurrentWeatherByCityName(city = cityName, countryId = countryId)
     }
 
     suspend fun fetchForecastByCoordinates(coordinates: CoordinatesNetwork): ForecastNetworkResponse {

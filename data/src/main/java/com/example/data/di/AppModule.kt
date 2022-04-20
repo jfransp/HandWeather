@@ -18,7 +18,7 @@ val appModule = module {
     //RemoteDataSource
     factory {
         RemoteDataSource(
-            weatherApiClient = get(),
+            currentWeatherApiClient = get(),
             forecastApiClient = get()
         )
     }

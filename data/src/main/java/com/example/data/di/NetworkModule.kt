@@ -3,14 +3,14 @@ package com.example.data.di
 import com.example.data.network.AppClient
 import com.example.data.network.AppClientImpl
 import com.example.data.network.services.ForecastApiClient
-import com.example.data.network.services.WeatherApiClient
+import com.example.data.network.services.CurrentWeatherApiClient
 import org.koin.dsl.module
 
 val networkModule = module {
 
-    //Weather API Client
+    //Current Weather API Client
     factory {
-        WeatherApiClient(
+        CurrentWeatherApiClient(
             client = get()
         )
     }
