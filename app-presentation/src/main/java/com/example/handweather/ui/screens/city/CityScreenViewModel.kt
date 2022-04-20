@@ -12,6 +12,7 @@ import com.example.handweather.ui.screens.city.state.CityScreenAction
 import com.example.handweather.ui.screens.city.state.CityScreenDialogState
 import com.example.handweather.ui.screens.city.state.CityScreenState
 import com.example.handweather.ui.screens.city.state.FetchingErrorState
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -21,12 +22,13 @@ class CityScreenViewModel(
     private val doFetchCityWeatherUseCase: DoFetchCityWeatherUseCase,
 ) : ComposeStateViewModel<CityScreenState, CityScreenAction>(CityScreenState()) {
 
+    private var cityDataJob: Job? = null
 
-    fun fetchCityWeather() {
+    fun fetchCityWeather(city: City? = null) {
         viewModelScope.launch {
             doFetchCityWeatherUseCase(
-                state.value.currentCity?.name ?: "",
-                state.value.currentCity?.country ?: ""
+                cityName = city?.name ?: state.value.currentCity?.name ?: "",
+                 countryCode = city?.country ?: state.value.currentCity?.country ?: ""
             ).also { result ->
                 if (result is Resource.Error) {
                     setState { state ->
@@ -49,7 +51,8 @@ class CityScreenViewModel(
 
 
     private fun getCityWeather(city: City?) {
-        viewModelScope.launch {
+        cityDataJob?.cancel()
+        cityDataJob = viewModelScope.launch {
             setLoadState(true)
             if (city != null) {
                 when (val result =
@@ -64,7 +67,7 @@ class CityScreenViewModel(
                                 state.copy(cityCurrentWeather = currentWeather)
                             }
                             setLoadState(false)
-                        }
+                        }.also { fetchCityWeather(city) }
                     }
                     is Resource.Error -> {
                         setDialogState(
@@ -80,10 +83,10 @@ class CityScreenViewModel(
     }
 
     fun onCityCardClicked(city: City) {
-        getCityWeather(city)
         setState { state ->
             state.copy(currentCity = city)
         }
+        getCityWeather(city)
     }
 
     private fun setDialogState(dialogState: CityScreenDialogState) {

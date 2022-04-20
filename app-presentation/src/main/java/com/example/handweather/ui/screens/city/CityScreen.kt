@@ -45,7 +45,7 @@ fun CityScreen(
             initialDelay = 1000*2,
             period = 1000*15
         ) {
-            viewModel.fetchCityWeather()
+            viewModel.fetchCityWeather(currentCity)
         }
     }
 

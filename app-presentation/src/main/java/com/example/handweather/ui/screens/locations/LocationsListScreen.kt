@@ -26,6 +26,7 @@ import com.example.handweather.ui.screens.city.CityScreen
 import com.example.handweather.ui.screens.city.CityScreenViewModel
 import com.example.handweather.ui.screens.locations.helper.handleLocationListScreenAction
 import com.example.handweather.util.extensions.getCityIcon
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 
@@ -48,7 +49,7 @@ fun LocationsListScreen(
     val cityScreenViewModel: CityScreenViewModel = getViewModel()
 
     LaunchedEffect(Unit) {
-        viewModel.action.collect() { action ->
+        viewModel.action.collectLatest { action ->
             handleLocationListScreenAction(
                 action = action,
                 sheetScope = bottomSheetScope,

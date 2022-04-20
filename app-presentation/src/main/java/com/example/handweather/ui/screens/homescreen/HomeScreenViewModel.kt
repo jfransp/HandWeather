@@ -91,6 +91,7 @@ class HomeScreenViewModel(
         }
     }
 
+    //Forecast loadstate not working properly, need to refactor this.
     private fun setForecastLoading(value: Boolean) {
         setState { state ->
             state.copy(forecastLoadState = value)
