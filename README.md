@@ -43,9 +43,6 @@ Most of the architectural ideas are arguably not suited for such a small project
 # Simplified Dependency and Architecture Graph
 ![HandWeather DephGraph](https://user-images.githubusercontent.com/74152618/164141025-c95caa9a-fbe8-4716-b789-1bebe54f9458.jpeg)
 
-# Release
-There will be a realease apk available on the app folder of this repository if you wish to download a working version of the application.
-
 # How to use it
 If you wish to build this code, you first have to make and account (for free) and get an API key for the OpenWeather API. Then, go to
 the class Constants on the Util folder at the data module, and set the API_KEY constant as your new API key. This way of storing and using
