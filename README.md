@@ -47,7 +47,7 @@ Most of the architectural ideas are arguably not suited for such a small project
 If you wish to build this code, you first have to make and account (for free) and get an API key for the OpenWeather API. Then, go to
 the class Constants on the Util folder at the data module, and set the API_KEY constant as your new API key. This way of storing and using
 an API Key isn't ideal from a production standpoint due to it being accessible through decompilation, but for the purposes of this project it works.
-The release apk version available at the app package utilizes my own personal API Key - there's not much of an issue with it I guess, I didn't even bother hiding my key in the original source code, if you want you can just build the code as it is, I don't mind!
+Also, I didn't even bother hiding my key in the original source code, if you want you can just build the code as it is, I don't mind!
 
 # TODO(Not yet implemented...)
 I've actually written a buch of code for error handling and error dialogs - most of the error handling is done(with handling classes, Resource utility and error entities), but there's still the actual UI and action handling left to be made. In some cases, like on the city screen, I've handled API call errors in the UI through a simplified popup, but there's no error dialog management anywhere else on the application.
