@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import com.example.data.persistance.datastore.ConfigData
 import com.example.handweather.locationservice.DeviceLocationManager
@@ -19,6 +20,7 @@ import com.example.handweather.ui.screens.locations.LocationsListScreen
 import com.example.handweather.ui.theme.HandWeatherTheme
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import org.koin.android.ext.android.inject
 
 class HandWeatherActivity : ComponentActivity() {
@@ -32,6 +34,12 @@ class HandWeatherActivity : ComponentActivity() {
     fun HandWeatherAppContent(
         locationManager: DeviceLocationManager
     ) {
+
+        val systemUiController = rememberSystemUiController()
+        val statusBarColor = MaterialTheme.colors.background
+        SideEffect {
+            systemUiController.setStatusBarColor(statusBarColor)
+        }
 
         val navController = rememberAnimatedNavController()
 
@@ -68,6 +76,7 @@ class HandWeatherActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         locationManager = DeviceLocationManager(activity = this, configData = configData)
+
 
         setContent {
             HandWeatherTheme {
