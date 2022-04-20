@@ -13,7 +13,7 @@ align="center">
 ### UI
 Jetpack Compose
 ### Room
-Persistence library
+Persistence library for caching
 ### Ktor
 Network requests
 Pagination of fetched data
@@ -34,7 +34,11 @@ of states and actions when using the Compose framwork
 This app was developed on top of the [OpenWeather](https://openweathermap.org/api) API.
 
 # Architecture
-MVVM, Clean Architecture application -> Mappers, UseCases, DataSources, Interfaces, etc.
+MVVM, Clean Architecture application -> Mappers, UseCases, DataSources, Interfaces, etc. 
+
+There's also a functional caching strategy - the UI only observers local data sources, which are updated according to location updates from the fusedLocationProvider in the case of the HomeScreen current location, or using a timer in the case of the cities. In this way, we have almost a real time climate reading, with updates between 10 and 30 seconds. API calls are only made when data flow is necessary for a good user experience. In the case of this application, the repositories do all the mediation between the local and remote data sources, fetching data from RemoteDataSource, collecting from LocalDataSource and fetching/upserting in case of a null result, there's no particular class responsible for caching strategy - the repository manages it.
+
+Most of the architectural ideas are arguably not suited for such a small project, but it's interesting and educational anyways. (:
 
 # Simplified Dependency and Architecture Graph
 ![HandWeather DephGraph](https://user-images.githubusercontent.com/74152618/164141025-c95caa9a-fbe8-4716-b789-1bebe54f9458.jpeg)
@@ -48,7 +52,7 @@ the class Constants on the Util folder at the data module, and set the API_KEY c
 an API Key isn't ideal from a production standpoint due to it being accessible through decompilation, but for the purposes of this project it works.
 The release apk version available at the app package utilizes my own personal API Key - there's not much of an issue with it I guess.
 
-
-
+# TODO(Not yet implemented...)
+I've actually written a buch of code for error handling and error dialogs - most of the error handling is done(with handling classes, Resource utility and error entities), but there's still the actual UI and action handling left to be made. In some cases, like on the city screen, I've handled API call errors in the UI through a simplified popup, but there's no error dialog management anywhere else on the application.
 
 
