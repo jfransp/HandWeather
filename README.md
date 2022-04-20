@@ -27,7 +27,7 @@ Multiple accompanist dependencies to facilitate certain functions within the Jet
 
 ### Custom Components
 Several custom components, including a custom ViewModel implementation that facilitates the usage and maintenance
-of states and actions when using the Compose framwork
+of states and actions when using the Compose framework
 
 
 # OpenWeather API
