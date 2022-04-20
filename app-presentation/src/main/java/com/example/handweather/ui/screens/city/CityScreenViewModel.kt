@@ -1,6 +1,5 @@
 package com.example.handweather.ui.screens.city
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.components.viewmodel.ComposeStateViewModel
 import com.example.domain.error.handleMessage
