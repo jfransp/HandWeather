@@ -16,7 +16,6 @@ Jetpack Compose
 Persistence library for caching
 ### Ktor
 Network requests
-Pagination of fetched data
 ### Coroutines
 Concurrency
 ### Koin
